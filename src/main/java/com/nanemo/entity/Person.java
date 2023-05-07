@@ -10,8 +10,8 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Human {
-    private Integer humanId;
+public class Person {
+    private Integer personId;
     private String name;
     private LocalDate birthdate;
     private List<Book> bookList;
