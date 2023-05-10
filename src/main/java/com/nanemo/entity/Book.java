@@ -13,6 +13,6 @@ public class Book {
     private Integer bookId;
     private String bookName;
     private String authorName;
-    private LocalDate releaseDate;
+    private String releaseDate;
     private Person person;
 }

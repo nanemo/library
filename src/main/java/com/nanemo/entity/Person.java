@@ -13,6 +13,6 @@ import java.util.List;
 public class Person {
     private Integer personId;
     private String name;
-    private LocalDate birthdate;
+    private String birthdate;
     private List<Book> bookList;
 }
