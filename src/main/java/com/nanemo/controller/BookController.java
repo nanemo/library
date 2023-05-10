@@ -19,8 +19,8 @@ public class BookController {
 
     @GetMapping("/all")
     public String getAllBooks(Model model) {
-        model.addAttribute("people", bookService);
-        return null;
+        model.addAttribute("people", bookService.getAllBooks());
+        return "people/start_page";
     }
 
     @GetMapping("/{book_id}")
