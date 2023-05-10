@@ -1,9 +1,10 @@
 package com.nanemo.config;
 
-import jakarta.servlet.ServletContext;
-import jakarta.servlet.ServletException;
 import org.springframework.web.filter.HiddenHttpMethodFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
+
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
 
 public class WebInit extends AbstractAnnotationConfigDispatcherServletInitializer {
     @Override

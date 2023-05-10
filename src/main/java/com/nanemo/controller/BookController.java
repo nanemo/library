@@ -19,14 +19,17 @@ public class BookController {
 
     @GetMapping("/all")
     public String getAllBooks(Model model) {
-        model.addAttribute("people", bookService.getAllBooks());
-        return "people/start_page";
+        model.addAttribute("books", bookService.getAllBooks());
+        return "book/start_page";
     }
 
     @GetMapping("/{book_id}")
-    public String getBookById(@PathVariable("book_id") Integer bookId) {
-        return null;
+    public String getBookById(@PathVariable("book_id") Integer bookId, Model model) {
+        model.addAttribute("book", bookService.getBookById(bookId));
+        return "book/show";
     }
+
+    //TODO
 
     @PostMapping("/new")
     public String createBook(@PathVariable("book_id") Integer bookId) {

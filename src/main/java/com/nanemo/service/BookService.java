@@ -22,7 +22,7 @@ public class BookService {
         return bookRepository.getAll();
     }
 
-    public Optional<Book> getBookById(Integer id){
+    public Book getBookById(Integer id){
         return bookRepository.getById(id);
     }
 

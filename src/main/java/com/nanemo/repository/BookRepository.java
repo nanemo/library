@@ -25,8 +25,9 @@ public class BookRepository implements AbstractRepository<Book> {
     }
 
     @Override
-    public Optional<Book> getById(Integer id) {
-        return jdbcTemplate.query("SELECT * FROM Book WHERE book_id=?", new Object[]{id}, new BeanPropertyRowMapper<>(Book.class)).stream().findAny();
+    public Book getById(Integer id) {
+        return jdbcTemplate.query("SELECT * FROM Book WHERE book_id=?", new Object[]{id},
+                new BeanPropertyRowMapper<>(Book.class)).stream().findAny().orElse(null);
     }
 
     @Override

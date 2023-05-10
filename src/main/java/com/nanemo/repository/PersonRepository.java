@@ -24,7 +24,7 @@ public class PersonRepository implements AbstractRepository<Person>{
     }
 
     @Override
-    public Optional<Person> getById(Integer id) {
+    public Person getById(Integer id) {
         return null;
     }
 
