@@ -1,5 +1,6 @@
 package com.nanemo.controller;
 
+import com.nanemo.entity.Book;
 import com.nanemo.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -31,8 +32,14 @@ public class BookController {
 
     //TODO
 
-    @PostMapping("/new")
-    public String createBook(@PathVariable("book_id") Integer bookId) {
+    @GetMapping("/new")
+    public String newBook(Model model){
+        model.addAttribute("book", new Book());
+        return "book/new";
+    }
+
+    @PostMapping("/create")
+    public String createBook() {
         return null;
     }
 
