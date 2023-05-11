@@ -21,7 +21,7 @@ public class BookController {
     @GetMapping("/all")
     public String getAllBooks(Model model) {
         model.addAttribute("books", bookService.getAllBooks());
-        return "book/start_page";
+        return "book/book_list";
     }
 
     @GetMapping("/{book_id}")
@@ -30,8 +30,6 @@ public class BookController {
         return "book/show";
     }
 
-    //TODO
-
     @GetMapping("/new")
     public String newBook(Model model){
         model.addAttribute("book", new Book());
@@ -39,8 +37,9 @@ public class BookController {
     }
 
     @PostMapping("/create")
-    public String createBook() {
-        return null;
+    public String createBook(@ModelAttribute("book") Book book) {
+        bookService.createBook(book);
+        return "redirect:/book/all";
     }
 
     @PostMapping("/{book_id}/update")
@@ -50,7 +49,8 @@ public class BookController {
 
     @DeleteMapping("/delete/{book_id}")
     public String deleteBook(@PathVariable("book_id") Integer bookId) {
-        return "redirect:book/all";
+        bookService.deleteBook(bookId);
+        return "redirect:/book/all";
     }
 
 }

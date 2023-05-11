@@ -6,15 +6,15 @@
 </head>
 <body>
 <div>
-    <form th:method="POST" th:action="@{/book/create}" th:object="${book}">
+    <form th:action="@{/book/create}" th:method="POST" th:object="${book}">
         <label for="name">Enter book name:</label>
-        <input type="text" th:field="*{bookName}" id="name">
+        <input id="name" th:field="*{bookName}" type="text">
         <br/>
         <label for="author_name">Enter author name:</label>
-        <input type="text" th:field="*{authorName}" id="author_name">
+        <input id="author_name" th:field="*{authorName}" type="text">
         <br/>
         <label for="release_date">Enter release date:</label>
-        <input type="text" th:field="*{releaseDate}" id="release_date">
+        <input id="release_date" th:field="*{releaseDate}" type="text">
         <br/>
         <input type="submit" value="Save">
     </form>
