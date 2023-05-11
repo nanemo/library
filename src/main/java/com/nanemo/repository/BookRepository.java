@@ -21,7 +21,7 @@ public class BookRepository implements AbstractRepository<Book> {
 
     @Override
     public List<Book> getAll() {
-        return jdbcTemplate.query("SELECT * FROM Book LEFT JOIN person p on p.person_id = book.person_id", new BeanPropertyRowMapper<>(Book.class));
+        return jdbcTemplate.query("SELECT * FROM Book ORDER BY book.book_id", new BeanPropertyRowMapper<>(Book.class));
     }
 
     @Override

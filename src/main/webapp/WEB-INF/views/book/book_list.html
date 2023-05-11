@@ -17,7 +17,7 @@
 <body>
 <div>
     <table>
-        <caption>NN Library</caption>
+        <caption>NN Library BOOK LIST</caption>
         <thead>
         <tr>
             <th>id</th>
@@ -38,6 +38,11 @@
             <td style="size: auto">
                 <form th:action="@{/book/delete/{book_id}/(book_id=${book.getBookId()})}" th:method="DELETE">
                     <button type="submit" value="DELETE">DELETE</button>
+                </form>
+            </td>
+            <td style="size: auto">
+                <form th:action="@{/book/before_update/{book_id}/(book_id=${book.getBookId()})}" th:method="GET">
+                    <button type="submit" value="UPDATE">UPDATE</button>
                 </form>
             </td>
         </tr>

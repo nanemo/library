@@ -31,7 +31,7 @@ public class BookController {
     }
 
     @GetMapping("/new")
-    public String newBook(Model model){
+    public String newBook(Model model) {
         model.addAttribute("book", new Book());
         return "book/new";
     }
@@ -42,9 +42,16 @@ public class BookController {
         return "redirect:/book/all";
     }
 
-    @PostMapping("/{book_id}/update")
-    public String updateBook(@PathVariable("book_id") Integer bookId) {
-        return null;
+    @GetMapping("/before_update/{book_id}")
+    public String beforeUpdateBook(Model model, @PathVariable("book_id") Integer bookId){
+        model.addAttribute("book", bookService.getBookById(bookId));
+        return "book/update";
+    }
+
+    @PostMapping("/update/{book_id}")
+    public String updateBook(@ModelAttribute("book") Book book, @PathVariable("book_id") Integer bookId) {
+        bookService.updateBook(book, bookId);
+        return "redirect:/book/all";
     }
 
     @DeleteMapping("/delete/{book_id}")
