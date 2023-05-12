@@ -1,5 +1,6 @@
 package com.nanemo.repository;
 
+import com.nanemo.entity.Book;
 import com.nanemo.entity.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -25,23 +26,29 @@ public class PersonRepository implements AbstractRepository<Person> {
 
     @Override
     public Person getById(Integer id) {
-        return jdbcTemplate.query("SELECT * FROM person p WHERE p.person_id=?", new Object[]{id},
+        return jdbcTemplate.query("SELECT p.* FROM person p WHERE p.person_id=?", new Object[]{id},
                 new BeanPropertyRowMapper<>(Person.class)).stream().findAny().orElse(null);
     }
 
     @Override
     public void create(Person person) {
-        jdbcTemplate.update("INSERT INTO person (name, birthday) VALUES (?, ?)", person.getName(), person.getBirthdate());
+        jdbcTemplate.update("INSERT INTO person (name, birthday) VALUES (?, ?)", person.getName(), person.getBirthday());
     }
 
     @Override
     public void update(Person person, Integer id) {
         jdbcTemplate.update("UPDATE person p SET p.name=?, p.birthday=? WHERE p.person_id=?",
-                person.getName(), person.getBirthdate(), person.getPersonId());
+                person.getName(), person.getBirthday(), person.getPersonId());
     }
 
     @Override
     public void delete(Integer id) {
         jdbcTemplate.update("DELETE FROM person p WHERE p.person_id=?", id);
     }
+
+    public List<Book> getPersonOrderedBookList(Integer personId) {
+        return jdbcTemplate.query("SELECT b.book_name, b.author_name, b.release_date FROM book b WHERE b.person_id=?",
+                new Object[]{personId}, new BeanPropertyRowMapper<>(Book.class));
+    }
+
 }

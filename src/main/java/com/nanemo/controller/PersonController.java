@@ -31,9 +31,16 @@ public class PersonController {
     }
 
     @GetMapping("/before_create")
-    public String beforeCreate(Model model){
+    public String beforeCreate(Model model) {
         model.addAttribute("person", new Person());
         return "person/before_create";
+    }
+
+    //TODO I have to do persons_ordered_books.html page/ Page with names of book and with Person parameters
+    @GetMapping("/ordered_book/{person_id}")
+    public String listOfOrderedBooks(Model model, @PathVariable("person_id") Integer personId) {
+        model.addAttribute("person", personService.getPersonWithOrderedBookList(personId));
+        return "person/persons_ordered_books";
     }
 
     @PostMapping("/create")
@@ -43,7 +50,7 @@ public class PersonController {
     }
 
     @GetMapping("/before_update/{person_id}")
-    public String beforeUpdate(Model model, @PathVariable("person_id") Integer personId){
+    public String beforeUpdate(Model model, @PathVariable("person_id") Integer personId) {
         model.addAttribute("person", personService.getPersonById(personId));
         return "person/before_update";
     }
@@ -56,8 +63,8 @@ public class PersonController {
 
     @DeleteMapping("/delete/{person_id}")
     public String deletePerson(@PathVariable("person_id") Integer personId) {
+        personService.deletePerson(personId);
         return "redirect:/person/all";
     }
-
 
 }

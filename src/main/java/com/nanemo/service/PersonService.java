@@ -36,4 +36,10 @@ public class PersonService {
         personRepository.delete(personId);
     }
 
+    public Person getPersonWithOrderedBookList(Integer personId) {
+        Person person = personRepository.getById(personId);
+        person.setBookList(personRepository.getPersonOrderedBookList(personId));
+
+        return person;
+    }
 }

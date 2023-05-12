@@ -1,10 +1,61 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style> th, td {
+        text-align: center;
+        border: 1px black solid
+    }
+
+    tr:nth-child(even) {
+        background-color: #D6EEEE;
+    }
+    </style>
+
 </head>
 <body>
+<div>
+    <table>
+        <caption>NN Library Clients</caption>
+        <thead>
+        <tr>
+            <th>id</th>
+            <th>name</th>
+            <th>Birthdate Year</th>
+            <th>Book list</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="person : ${people}">
+            <td th:text="${person.getPersonId()}"></td>
+            <td th:text="${person.getName()}"></td>
+            <td th:text="${person.getBirthday()}"></td>
+            <td>
+                <form th:action="@{/person/ordered_book/{person_id}/(person_id=${person.getPersonId()})}" th:method="GET">
+                    <button type="submit" value="ORDERED BOOKS">ORDERED BOOKS</button>
+                </form>
+            </td>
+
+<!--            TODO-->
+
+            <td style="size: auto">
+                <form th:action="@{/book/delete/{book_id}/(book_id=${book.getBookId()})}" th:method="DELETE">
+                    <button type="submit" value="DELETE">DELETE</button>
+                </form>
+            </td>
+            <td style="size: auto">
+                <form th:action="@{/book/before_update/{book_id}/(book_id=${book.getBookId()})}" th:method="GET">
+                    <button type="submit" value="UPDATE">UPDATE</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<br/>
+
+<a href="/book/new">Add book</a>
 
 </body>
 </html>
