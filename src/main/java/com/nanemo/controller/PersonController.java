@@ -1,5 +1,6 @@
 package com.nanemo.controller;
 
+import com.nanemo.entity.Book;
 import com.nanemo.entity.Person;
 import com.nanemo.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,7 +50,8 @@ public class PersonController {
     public String getFreeBookLists(Model model,
                                    @PathVariable("person_id") Integer personId) {
         model.addAttribute("free_books", personService.getFreeBookLists(personId));
-        model.addAttribute("person_id", personId);
+        model.addAttribute("current_person_id", personId);
+
         return "book/free_books";
     }
 

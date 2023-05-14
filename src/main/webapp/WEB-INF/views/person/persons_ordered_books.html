@@ -41,6 +41,13 @@
                 <td th:text="${book.bookName}"></td>
                 <td th:text="${book.authorName}"></td>
                 <td th:text="${book.releaseDate}"></td>
+                <td>
+                    <form th:action="@{/book/delete_book_from_person_list/{person_id}/{book_id}/(person_id=${person.personId},
+                    book_id=${book.bookId})}"
+                          th:method="post">
+                        <button type="submit">GIVE BOOK BACK</button>
+                    </form>
+                </td>
             </tr>
             </tbody>
         </table>
@@ -48,6 +55,10 @@
 
     <form th:action="@{/person/free_book/{person_id}(person_id=${person.personId})}" th:method="GET">
         <button type="submit" value="FREE BOOK">FREE BOOK LIST</button>
+    </form>
+
+    <form th:action="@{/person/all}" th:method="GET">
+        <button type="submit" >back</button>
     </form>
 </div>
 

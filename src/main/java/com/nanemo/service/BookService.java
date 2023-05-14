@@ -39,4 +39,8 @@ public class BookService {
     public void addBookToPersonBalance(Integer personId, Integer bookId) {
         bookRepository.addBookToPersonBalance(personId, bookId);
     }
+
+    public void deleteBookFromPersonList(Integer bookId) {
+        bookRepository.deleteBookFromPersonList(bookId);
+    }
 }

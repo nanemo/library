@@ -50,6 +50,10 @@ public class BookRepository implements AbstractRepository<Book> {
     }
 
     public void addBookToPersonBalance(Integer personId, Integer bookId) {
-        jdbcTemplate.update("UPDATE book b SET b.person_id=? WHERE b.book_id=?", personId, bookId);
+        jdbcTemplate.update("UPDATE book SET person_id=? WHERE book_id=?", personId, bookId);
+    }
+
+    public void deleteBookFromPersonList(Integer bookId) {
+        jdbcTemplate.update("UPDATE book SET person_id=null WHERE book_id=?", bookId);
     }
 }

@@ -5,7 +5,11 @@
     <title>Free books</title>
 </head>
 <body>
-<div>
+<div th:if="${free_books.isEmpty()}">
+    <h1>All books is busy</h1>
+</div>
+
+<div th:unless="${free_books.isEmpty()}">
     <table>
         <caption>Free books list</caption>
         <thead>
@@ -22,19 +26,22 @@
             <td th:text="${book.releaseDate}"></td>
 
             <td>
-                <form th:action="@{/book/add_book_to_person/{person_id}/{book_id}/(person_id=${person_id},book_id=${book.bookId})}" th:method="POST">
-                    <button type="button" value="Get book">GET BOOK</button>
+                <form th:action="@{/book/add_book_to_person/{person_id}/{book_id}/(person_id=${current_person_id},
+                book_id=${book.bookId})}"
+                      th:method="POST">
+                    <button type="submit">GET BOOK</button>
                 </form>
-            </td>
-
-            <td>
-<!--                <form th:action="@{/person/ordered_book/{person_id}/(person_id=${person_id})}">-->
-
-<!--                </form>-->
             </td>
         </tr>
         </tbody>
     </table>
+</div>
+
+<div>
+    <form th:action="@{/person/ordered_book/{person_id}/(person_id=${current_person_id})}"
+          th:method="get">
+        <button type="submit">back</button>
+    </form>
 </div>
 </body>
 </html>

@@ -48,7 +48,7 @@ public class PersonRepository implements AbstractRepository<Person> {
     }
 
     public List<Book> getPersonOrderedBookList(Integer personId) {
-        return jdbcTemplate.query("SELECT b.book_name, b.author_name, b.release_date FROM book b WHERE b.person_id=?",
+        return jdbcTemplate.query("SELECT b.* FROM book b WHERE b.person_id=?",
                 new Object[]{personId}, new BeanPropertyRowMapper<>(Book.class));
     }
 
