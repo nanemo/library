@@ -1,5 +1,6 @@
 package com.nanemo.service;
 
+import com.nanemo.entity.Book;
 import com.nanemo.entity.Person;
 import com.nanemo.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,5 +42,9 @@ public class PersonService {
         person.setBookList(personRepository.getPersonOrderedBookList(personId));
 
         return person;
+    }
+
+    public List<Book> getFreeBookLists(Integer personId) {
+        return personRepository.getFreeBookLists(personId);
     }
 }

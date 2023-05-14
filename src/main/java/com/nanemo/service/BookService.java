@@ -6,11 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class BookService {
-
     BookRepository bookRepository;
 
     @Autowired
@@ -38,4 +36,7 @@ public class BookService {
         bookRepository.delete(id);
     }
 
+    public void addBookToPersonBalance(Integer personId, Integer bookId) {
+        bookRepository.addBookToPersonBalance(personId, bookId);
+    }
 }

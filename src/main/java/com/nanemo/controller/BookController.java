@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/book")
 public class BookController {
@@ -34,6 +36,14 @@ public class BookController {
     public String newBook(Model model) {
         model.addAttribute("book", new Book());
         return "book/new";
+    }
+
+    @PostMapping("/add_book_to_person")
+    public String addBookToPersonBalance(@RequestParam(value = "person_id") Integer personId,
+                                         @RequestParam(value = "book_id") Integer bookId){
+
+        bookService.addBookToPersonBalance(personId, bookId);
+        return "book/free_books";
     }
 
     @PostMapping("/create")

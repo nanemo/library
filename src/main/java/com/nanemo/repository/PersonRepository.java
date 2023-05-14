@@ -8,6 +8,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Repository
 public class PersonRepository implements AbstractRepository<Person> {
@@ -21,7 +22,7 @@ public class PersonRepository implements AbstractRepository<Person> {
 
     @Override
     public List<Person> getAll() {
-        return jdbcTemplate.query("SELECT * FROM person Left Join book b on person.person_id = b.person_id ORDER BY person.person_id", new BeanPropertyRowMapper<>(Person.class));
+        return jdbcTemplate.query("SELECT * FROM person ORDER BY person.person_id", new BeanPropertyRowMapper<>(Person.class));
     }
 
     @Override
@@ -51,4 +52,9 @@ public class PersonRepository implements AbstractRepository<Person> {
                 new Object[]{personId}, new BeanPropertyRowMapper<>(Book.class));
     }
 
+
+    public List<Book> getFreeBookLists(Integer personId) {
+        return jdbcTemplate.query("SELECT * FROM book b WHERE b.person_id IS NULL",
+                new BeanPropertyRowMapper<>(Book.class));
+    }
 }

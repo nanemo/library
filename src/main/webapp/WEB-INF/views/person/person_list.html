@@ -8,6 +8,11 @@
         border: 1px black solid
     }
 
+    table {
+        size: auto;
+        margin: auto
+    }
+
     tr:nth-child(even) {
         background-color: #D6EEEE;
     }
@@ -15,7 +20,7 @@
 
 </head>
 <body>
-<div>
+<div style="margin: auto">
     <table>
         <caption>NN Library Clients</caption>
         <thead>
@@ -23,7 +28,6 @@
             <th>id</th>
             <th>name</th>
             <th>Birthdate Year</th>
-            <th>Book list</th>
         </tr>
         </thead>
         <tbody>
@@ -32,21 +36,9 @@
             <td th:text="${person.getName()}"></td>
             <td th:text="${person.getBirthday()}"></td>
             <td>
-                <form th:action="@{/person/ordered_book/{person_id}/(person_id=${person.getPersonId()})}" th:method="GET">
+                <form th:action="@{/person/ordered_book/{person_id}/(person_id=${person.getPersonId()})}"
+                      th:method="GET">
                     <button type="submit" value="ORDERED BOOKS">ORDERED BOOKS</button>
-                </form>
-            </td>
-
-<!--            TODO-->
-
-            <td style="size: auto">
-                <form th:action="@{/book/delete/{book_id}/(book_id=${book.getBookId()})}" th:method="DELETE">
-                    <button type="submit" value="DELETE">DELETE</button>
-                </form>
-            </td>
-            <td style="size: auto">
-                <form th:action="@{/book/before_update/{book_id}/(book_id=${book.getBookId()})}" th:method="GET">
-                    <button type="submit" value="UPDATE">UPDATE</button>
                 </form>
             </td>
         </tr>
@@ -55,7 +47,18 @@
 </div>
 <br/>
 
-<a href="/book/new">Add book</a>
 
 </body>
 </html>
+
+
+<!--<td style="size: auto">-->
+<!--    <form th:action="@{/book/delete/{book_id}/(book_id=${book.getBookId()})}" th:method="DELETE">-->
+<!--        <button type="submit" value="DELETE">DELETE</button>-->
+<!--    </form>-->
+<!--</td>-->
+<!--<td style="size: auto">-->
+<!--    <form th:action="@{/book/before_update/{book_id}/(book_id=${book.getBookId()})}" th:method="GET">-->
+<!--        <button type="submit" value="UPDATE">UPDATE</button>-->
+<!--    </form>-->
+<!--</td>-->

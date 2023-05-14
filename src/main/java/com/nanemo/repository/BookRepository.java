@@ -48,4 +48,8 @@ public class BookRepository implements AbstractRepository<Book> {
     public void delete(Integer id) {
         jdbcTemplate.update("DELETE FROM Book WHERE book_id=?", id);
     }
+
+    public void addBookToPersonBalance(Integer personId, Integer bookId) {
+        jdbcTemplate.update("UPDATE book b SET b.person_id=? WHERE b.book_id=?", personId, bookId);
+    }
 }

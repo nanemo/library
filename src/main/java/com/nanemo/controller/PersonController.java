@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/person")
 public class PersonController {
@@ -42,6 +44,20 @@ public class PersonController {
         model.addAttribute("person", personService.getPersonWithOrderedBookList(personId));
         return "person/persons_ordered_books";
     }
+
+    @GetMapping("/free_book/{person_id}")
+    public String getFreeBookLists(Model model,
+                                   @PathVariable("person_id") Integer personId) {
+        model.addAttribute("free_books", personService.getFreeBookLists(personId));
+        model.addAttribute("person_id", personId);
+        return "book/free_books";
+    }
+
+//    @GetMapping("/choose_book/{book_id}")
+//    public String selectBookForRead(Model model, @PathVariable("book_id") Integer bookId) {
+//        personService.selectBookForRead(bookId);
+//        return "person/persons_ordered_books";
+//    }
 
     @PostMapping("/create")
     public String createPerson(@ModelAttribute("person") Person person) {

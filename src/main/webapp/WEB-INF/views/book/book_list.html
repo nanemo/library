@@ -29,7 +29,6 @@
         </thead>
         <tbody>
         <tr th:each="book : ${books}">
-            <!--TODO How to add button for every person with action GetMapping-->
             <td th:text="${book.getBookId()}"></td>
             <td th:text="${book.getBookName()}"></td>
             <td th:text="${book.getAuthorName()}"></td>

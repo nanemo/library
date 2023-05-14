@@ -3,46 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <title>Ordered list</title>
+    <style>table {
+        size: auto;
+        margin: auto
+    }</style>
 </head>
 <body>
 <div>
-    <table>
-        <caption>Client info</caption>
-        <thead>
-        <tr>
-            <th>Id</th>
-            <th>Name</th>
-            <th>Birthdate</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td th:text="${person.getPersonId()}"></td>
-            <td th:text="${person.getName()}"></td>
-            <td th:text="${person.getBirthday()}"></td>
-        </tr>
-        </tbody>
-    </table>
+    <div>
+        <table>
+            <caption>Client info</caption>
+            <thead>
+            <tr>
+                <th>Name</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td th:text="${person.getName()}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div>
+        <table>
+            <caption>Book list</caption>
+            <thead>
+            <tr>
+                <th>Book name</th>
+                <th>Author name</th>
+                <th>Release date</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="book : ${person.getBookList()}">
+                <td th:text="${book.bookName}"></td>
+                <td th:text="${book.authorName}"></td>
+                <td th:text="${book.releaseDate}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <form th:action="@{/person/free_book/{person_id}(person_id=${person.personId})}" th:method="GET">
+        <button type="submit" value="FREE BOOK">FREE BOOK LIST</button>
+    </form>
 </div>
 
-<div>
-    <table>
-        <caption>Book list</caption>
-        <thead>
-        <tr>
-            <th>Book name</th>
-            <th>Author name</th>
-            <th>Release date</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="book : ${person.getBookList()}">
-            <td th:text="${book.bookName}"></td>
-            <td th:text="${book.authorName}"></td>
-            <td th:text="${book.releaseDate}"></td>
-        </tr>
-        </tbody>
-    </table>
-</div>
 </body>
 </html>
