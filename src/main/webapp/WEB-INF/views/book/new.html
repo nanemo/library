@@ -16,7 +16,10 @@
         <label for="release_date">Enter release date:</label>
         <input id="release_date" th:field="*{releaseDate}" type="text">
         <br/>
-        <input type="submit" value="Save">
+        <input type="submit" value="save">
+    </form>
+    <form th:action="@{/book/all}" th:method="get">
+        <button type="submit">back</button>
     </form>
 </div>
 

@@ -50,7 +50,8 @@
 </div>
 <br/>
 
-<a href="/book/new">Add book</a>
-
+<form th:action="@{/book/new}" th:method="get">
+<button type="submit">add new book</button>
+</form>
 </body>
 </html>

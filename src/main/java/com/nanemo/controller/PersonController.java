@@ -1,14 +1,11 @@
 package com.nanemo.controller;
 
-import com.nanemo.entity.Book;
 import com.nanemo.entity.Person;
 import com.nanemo.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @Controller
 @RequestMapping("/person")
