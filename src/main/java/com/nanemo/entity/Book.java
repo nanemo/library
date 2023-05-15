@@ -15,4 +15,15 @@ public class Book {
     private String authorName;
     private String releaseDate;
     private Person person;
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "bookId=" + bookId +
+                ", bookName='" + bookName + '\'' +
+                ", authorName='" + authorName + '\'' +
+                ", releaseDate='" + releaseDate + '\'' +
+                ", person=" + person +
+                '}';
+    }
 }

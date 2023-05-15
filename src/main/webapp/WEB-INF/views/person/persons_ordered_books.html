@@ -3,30 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <title>Ordered list</title>
-    <style>table {
+    <style> th, td {
+        text-align: center;
+        border: 1px black solid
+    }
+
+    table {
         size: auto;
         margin: auto
-    }</style>
+    }
+
+    tr:nth-child(even) {
+        background-color: #D6EEEE;
+    }
+    </style>
 </head>
 <body>
-<div>
-    <div>
-        <table>
-            <caption>Client info</caption>
-            <thead>
-            <tr>
-                <th>Name</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td th:text="${person.getName()}"></td>
-            </tr>
-            </tbody>
-        </table>
+<div style="margin: auto">
+    <div style="text-align: center">
+        <h3 id="reset-button">Visitor:
+            <span th:text="${person.getName()}"></span>
+        </h3>
     </div>
 
-    <div>
+    <div style="margin: auto">
         <table>
             <caption>Book list</caption>
             <thead>
@@ -51,15 +51,17 @@
             </tr>
             </tbody>
         </table>
+    </div><br><br>
+
+    <div style="text-align: center">
+        <form th:action="@{/person/free_book/{person_id}(person_id=${person.personId})}" th:method="GET">
+            <button type="submit" value="FREE BOOK">FREE BOOK LIST</button>
+        </form>
+
+        <form th:action="@{/person/all}" th:method="GET">
+            <button type="submit">back</button>
+        </form>
     </div>
-
-    <form th:action="@{/person/free_book/{person_id}(person_id=${person.personId})}" th:method="GET">
-        <button type="submit" value="FREE BOOK">FREE BOOK LIST</button>
-    </form>
-
-    <form th:action="@{/person/all}" th:method="GET">
-        <button type="submit" >back</button>
-    </form>
 </div>
 
 </body>

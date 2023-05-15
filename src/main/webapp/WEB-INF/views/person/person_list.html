@@ -17,7 +17,6 @@
         background-color: #D6EEEE;
     }
     </style>
-
 </head>
 <body>
 <div style="margin: auto">
@@ -38,12 +37,28 @@
             <td>
                 <form th:action="@{/person/ordered_book/{person_id}/(person_id=${person.getPersonId()})}"
                       th:method="GET">
-                    <button type="submit" value="ORDERED BOOKS">ORDERED BOOKS</button>
+                    <button type="submit">books on read</button>
+                </form>
+            </td>
+            <td>
+                <form th:action="@{/person/delete/{person_id}/(person_id=${person.personId})}"
+                      th:method="DELETE">
+                    <button type="submit">remove</button>
+                </form>
+            </td>
+            <td>
+                <form th:action="@{/person/before_update/{person_id}/(person_id=${person.personId})}"
+                      th:method="GET">
+                    <button type="submit">update</button>
                 </form>
             </td>
         </tr>
         </tbody>
-    </table>
+    </table><br>
+
+    <form style="margin: auto; size: auto; text-align: center" th:action="@{/person/before_create}" th:method="get">
+        <button type="submit">CREATE</button>
+    </form>
 </div>
 <br/>
 

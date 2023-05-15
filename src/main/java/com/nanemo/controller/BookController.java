@@ -34,18 +34,17 @@ public class BookController {
         return "book/show";
     }
 
-    @GetMapping("/new")
-    public String newBook(Model model) {
-        model.addAttribute("book", new Book());
-        return "book/new";
-    }
-
-    //TODO
     @PostMapping("/add_book_to_person/{person_id}/{book_id}")
     public String addBookToPersonBalance(@PathVariable("person_id") Integer personId,
                                          @PathVariable("book_id") Integer bookId) {
         bookService.addBookToPersonBalance(personId, bookId);
         return "redirect:/person/free_book/" + personId;
+    }
+
+    @GetMapping("/new")
+    public String newBook(Model model) {
+        model.addAttribute("book", new Book());
+        return "book/new";
     }
 
     @PostMapping("/create")

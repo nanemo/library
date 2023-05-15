@@ -3,24 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+        form {
+            margin: auto;
+            size: auto;
+            text-align: center;
+            background-color: coral;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
 <div>
-    <form th:action="@{/book/create}" th:method="POST" th:object="${book}">
-        <label for="name">Enter book name:</label>
-        <input id="name" th:field="*{bookName}" type="text">
-        <br/>
-        <label for="author_name">Enter author name:</label>
-        <input id="author_name" th:field="*{authorName}" type="text">
-        <br/>
-        <label for="release_date">Enter release date:</label>
-        <input id="release_date" th:field="*{releaseDate}" type="text">
-        <br/>
-        <input type="submit" value="save">
-    </form>
-    <form th:action="@{/book/all}" th:method="get">
-        <button type="submit">back</button>
-    </form>
+    <h3>Page for creating</h3>
+
+    <div>
+        <form th:action="@{/book/create}" th:method="POST" th:object="${book}">
+            <label for="name">Enter book name:</label><br>
+            <input id="name" th:field="*{bookName}" type="text" name="name"><br>
+            <label for="author_name">Enter author name:</label><br>
+            <input id="author_name" th:field="*{authorName}" type="text" name="author_name"><br>
+            <label for="release_date">Enter release date:</label><br>
+            <input id="release_date" th:field="*{releaseDate}" type="text" name="release_date"><br><br>
+            <input type="button" value="save">
+        </form>
+        <form th:action="@{/book/all}" th:method="get">
+            <button type="submit">back</button>
+        </form>
+    </div>
 </div>
 
 </body>

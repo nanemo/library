@@ -37,9 +37,11 @@ public class PersonRepository implements AbstractRepository<Person> {
     }
 
     @Override
-    public void update(Person person, Integer id) {
-        jdbcTemplate.update("UPDATE person p SET p.name=?, p.birthday=? WHERE p.person_id=?",
-                person.getName(), person.getBirthday(), person.getPersonId());
+    public void update(Person person, Integer person_id) {
+        jdbcTemplate.update("UPDATE person SET name=?, birthday=? WHERE person_id=?",
+                person.getName(),
+                person.getBirthday(),
+                person_id);
     }
 
     @Override

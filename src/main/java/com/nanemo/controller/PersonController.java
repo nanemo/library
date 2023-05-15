@@ -30,12 +30,6 @@ public class PersonController {
         return "person/show";
     }
 
-    @GetMapping("/before_create")
-    public String beforeCreate(Model model) {
-        model.addAttribute("person", new Person());
-        return "person/before_create";
-    }
-
     //TODO I have to do persons_ordered_books.html page/ Page with names of book and with Person parameters
     @GetMapping("/ordered_book/{person_id}")
     public String listOfOrderedBooks(Model model, @PathVariable("person_id") Integer personId) {
@@ -52,11 +46,11 @@ public class PersonController {
         return "book/free_books";
     }
 
-//    @GetMapping("/choose_book/{book_id}")
-//    public String selectBookForRead(Model model, @PathVariable("book_id") Integer bookId) {
-//        personService.selectBookForRead(bookId);
-//        return "person/persons_ordered_books";
-//    }
+    @GetMapping("/before_create")
+    public String beforeCreate(Model model) {
+        model.addAttribute("person", new Person());
+        return "person/create_person";
+    }
 
     @PostMapping("/create")
     public String createPerson(@ModelAttribute("person") Person person) {
@@ -67,7 +61,7 @@ public class PersonController {
     @GetMapping("/before_update/{person_id}")
     public String beforeUpdate(Model model, @PathVariable("person_id") Integer personId) {
         model.addAttribute("person", personService.getPersonById(personId));
-        return "person/before_update";
+        return "person/update_person";
     }
 
     @PostMapping("/update/{person_id}")
