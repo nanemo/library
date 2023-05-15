@@ -9,6 +9,8 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/book")
 public class BookController {
@@ -22,16 +24,13 @@ public class BookController {
         this.personService = personService;
     }
 
+    //TODO it is doesn't work. I can not display the owners books. Problem in query to postgres
     @GetMapping("/all")
     public String getAllBooks(Model model) {
-        model.addAttribute("books", bookService.getAllBooks());
+        List<Book> allBooks = bookService.getAllBooks();
+        System.out.println(allBooks);
+        model.addAttribute("books", allBooks);
         return "book/book_list";
-    }
-
-    @GetMapping("/{book_id}")
-    public String getBookById(@PathVariable("book_id") Integer bookId, Model model) {
-        model.addAttribute("book", bookService.getBookById(bookId));
-        return "book/show";
     }
 
     @PostMapping("/add_book_to_person/{person_id}/{book_id}")

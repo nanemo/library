@@ -2,8 +2,6 @@ package com.nanemo.entity;
 
 import lombok.*;
 
-import java.time.LocalDate;
-
 @Getter
 @Setter
 @AllArgsConstructor
