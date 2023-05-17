@@ -1,6 +1,4 @@
 
-7
-pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
 k
 ;src/main/java/com/nanemo/repository/AbstractRepository.java,5\c\5c1eedcd8ddc41ad46fd4aba1d7adb63dc1ab0ab
 H
@@ -18,8 +16,6 @@ i
 9src/main/java/com/nanemo/repository/PersonRepository.java,e\8\e8699eedaa1210b67caf818e48e399d4ea4a91b2
 a
 1src/main/java/com/nanemo/service/BookService.java,4\f\4f4437761b32e2a1df9126eeebdfb74385a1014a
-[
-+src/main/java/com/nanemo/entity/Person.java,1\c\1c4f4e08c56d9fa4ac95cff2d2d640fd837990af
 [
 +src/main/webapp/WEB-INF/views/book/new.html,b\2\b2bededd655f410d6a92b7468646ee518fc0be6e
 ^
