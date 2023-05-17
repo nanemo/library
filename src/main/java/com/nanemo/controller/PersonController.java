@@ -23,14 +23,12 @@ public class PersonController {
         return "person/person_list";
     }
 
-    //TODO This method isn't used
     @GetMapping("/{person_id}")
     public String getPersonById(Model model, @PathVariable("person_id") Integer personId) {
         model.addAttribute("person", personService.getPersonById(personId));
         return "person/show";
     }
 
-    //TODO I have to do persons_ordered_books.html page/ Page with names of book and with Person parameters
     @GetMapping("/ordered_book/{person_id}")
     public String listOfOrderedBooks(Model model, @PathVariable("person_id") Integer personId) {
         model.addAttribute("person", personService.getPersonWithOrderedBookList(personId));

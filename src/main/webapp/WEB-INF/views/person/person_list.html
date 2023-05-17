@@ -54,13 +54,17 @@
             </td>
         </tr>
         </tbody>
-    </table><br>
+    </table>
+    <br>
 
     <form style="margin: auto; size: auto; text-align: center" th:action="@{/person/before_create}" th:method="get">
-        <button type="submit">CREATE</button>
+        <button type="submit">add visitor</button>
     </form>
 </div>
 <br/>
+<form style="margin: auto; size: auto; text-align: center" th:action="@{/book/all}" th:method="get">
+    <button type="submit">go to book list</button>
+</form>
 
 
 </body>

@@ -11,6 +11,9 @@
     tr:nth-child(even) {
         background-color: #D6EEEE;
     }
+    table{
+        margin: auto; size: auto; text-align: center;
+    }
 
     </style>
 
@@ -35,15 +38,15 @@
                 <td th:text="${book.getBookName()}"></td>
                 <td th:text="${book.getAuthorName()}"></td>
                 <td th:text="${book.getReleaseDate()}"></td>
-                <td th:text="${book.getPerson()}"></td>
+                <td th:text="${book.getName()}"></td>
                 <td style="size: auto">
                     <form th:action="@{/book/delete/{book_id}/(book_id=${book.getBookId()})}" th:method="DELETE">
-                        <button type="submit" value="DELETE">DELETE</button>
+                        <button type="submit" value="DELETE">remove</button>
                     </form>
                 </td>
                 <td style="size: auto">
                     <form th:action="@{/book/before_update/{book_id}/(book_id=${book.getBookId()})}" th:method="GET">
-                        <button type="submit" value="UPDATE">UPDATE</button>
+                        <button type="submit" value="UPDATE">update</button>
                     </form>
                 </td>
             </tr>
@@ -52,9 +55,20 @@
     </div>
     <br/>
 
-    <form style="text-align: center; margin: auto; size: auto" th:action="@{/book/new}" th:method="get">
-        <button type="submit">add new book</button>
-    </form>
+    <table>
+        <tr>
+            <td>
+                <form style="text-align: center; margin: auto; size: auto" th:action="@{/book/new}" th:method="get">
+                    <button type="submit">add new book</button>
+                </form>
+            </td>
+            <td>
+                <form style="text-align: center; margin: auto; size: auto" th:action="@{/person/all}" th:method="get">
+                    <button type="submit">go to visitor page</button>
+                </form>
+            </td>
+        </tr>
+    </table>
 </div>
 </body>
 </html>

@@ -12,7 +12,7 @@ public class Book {
     private String bookName;
     private String authorName;
     private String releaseDate;
-    private Person person;
+    private String name;
 
     @Override
     public String toString() {
@@ -21,7 +21,7 @@ public class Book {
                 ", bookName='" + bookName + '\'' +
                 ", authorName='" + authorName + '\'' +
                 ", releaseDate='" + releaseDate + '\'' +
-                ", person=" + person +
+                ", personName=" + name +
                 '}';
     }
 }
