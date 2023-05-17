@@ -24,12 +24,9 @@ public class BookController {
         this.personService = personService;
     }
 
-    //TODO it is doesn't work. I can not display the owners books. Problem in query to postgres
     @GetMapping("/all")
     public String getAllBooks(Model model) {
-        List<Book> allBooks = bookService.getAllBooks();
-        System.out.println(allBooks);
-        model.addAttribute("books", allBooks);
+        model.addAttribute("books", bookService.getAllBooks());
         return "book/book_list";
     }
 

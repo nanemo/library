@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PersonService {
@@ -30,7 +31,16 @@ public class PersonService {
     }
 
     public void updatePerson(Person person, Integer personId) {
-        personRepository.update(person, personId);
+        Person trimmedPerson = trimPersonFields(person);
+        personRepository.update(trimmedPerson, personId);
+    }
+
+    private Person trimPersonFields(Person person) {
+        Person newPerson = new Person();
+        newPerson.setPersonId(person.getPersonId());
+        newPerson.setName(person.getName().trim());
+        newPerson.setBirthday(person.getBirthday().trim());
+        return newPerson;
     }
 
     public void deletePerson(Integer personId) {
@@ -47,4 +57,10 @@ public class PersonService {
     public List<Book> getFreeBookLists(Integer personId) {
         return personRepository.getFreeBookLists(personId);
     }
+
+    public Optional<Person> getPersonByName(String name) {
+        return personRepository.getPersonByName(name);
+    }
+
+
 }
