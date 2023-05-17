@@ -2,19 +2,30 @@ package com.nanemo.controller;
 
 import com.nanemo.entity.Person;
 import com.nanemo.service.PersonService;
+import com.nanemo.util.DateValidator;
+import com.nanemo.util.PersonNameValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 @RequestMapping("/person")
 public class PersonController {
     private final PersonService personService;
+    private final PersonNameValidator personNameValidator;
+    private final DateValidator dateValidator;
 
     @Autowired
-    public PersonController(PersonService personService) {
+    public PersonController(PersonService personService, PersonNameValidator personNameValidator, DateValidator dateValidator) {
         this.personService = personService;
+        this.personNameValidator = personNameValidator;
+        this.dateValidator = dateValidator;
     }
 
     @GetMapping("/all")
@@ -24,13 +35,15 @@ public class PersonController {
     }
 
     @GetMapping("/{person_id}")
-    public String getPersonById(Model model, @PathVariable("person_id") Integer personId) {
+    public String getPersonById(Model model,
+                                @PathVariable("person_id") Integer personId) {
         model.addAttribute("person", personService.getPersonById(personId));
         return "person/show";
     }
 
     @GetMapping("/ordered_book/{person_id}")
-    public String listOfOrderedBooks(Model model, @PathVariable("person_id") Integer personId) {
+    public String listOfOrderedBooks(Model model,
+                                     @PathVariable("person_id") Integer personId) {
         model.addAttribute("person", personService.getPersonWithOrderedBookList(personId));
         return "person/persons_ordered_books";
     }
@@ -51,19 +64,40 @@ public class PersonController {
     }
 
     @PostMapping("/create")
-    public String createPerson(@ModelAttribute("person") Person person) {
+    public String createPerson(@ModelAttribute("person") @Valid Person person,
+                               BindingResult bindingResult) {
+        personNameValidator.validate(person, bindingResult);
+
+        if (bindingResult.hasErrors()) {
+            return "person/create_person";
+        }
+
         personService.createPerson(person);
         return "redirect:/person/all";
     }
 
     @GetMapping("/before_update/{person_id}")
-    public String beforeUpdate(Model model, @PathVariable("person_id") Integer personId) {
+    public String beforeUpdate(Model model,
+                               @PathVariable("person_id") Integer personId) {
         model.addAttribute("person", personService.getPersonById(personId));
         return "person/update_person";
     }
 
     @PostMapping("/update/{person_id}")
-    public String updatePerson(@ModelAttribute("person") Person person, @PathVariable("person_id") Integer personId) {
+    public String updatePerson(ModelMap modelMap, @ModelAttribute("person") @Valid Person person,
+                               BindingResult bindingResult,
+                               @PathVariable("person_id") Integer personId) {
+        person.setPersonId(personId);
+
+        if (!person.getName().equals(personService.getPersonById(personId).getName())) {
+            personNameValidator.validate(person, bindingResult);
+        }
+
+        dateValidator.validate(person, bindingResult);
+        if (bindingResult.hasErrors()) {
+            return "person/update_person";
+        }
+
         personService.updatePerson(person, personId);
         return "redirect:/person/all";
     }

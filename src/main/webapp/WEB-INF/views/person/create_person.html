@@ -8,7 +8,7 @@
             margin: auto;
             size: auto;
             text-align: center;
-            background-color: coral;
+            background-color: dimgray;
             cursor: pointer;
         }
     </style>
@@ -20,8 +20,10 @@
     <form th:action="@{/person/create}" th:method="POST" th:object="${person}">
         <label for="name">Enter person name:</label><br>
         <input id="name" th:field="*{name}" type="text" name="name"><br>
+        <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name error! </div>
         <label for="birth_year">Enter birth year:</label><br>
-        <input id="birth_year" th:field="*{birthday}" type="text" name="author_name"><br><br>
+        <input id="birth_year" th:field="*{birthday}" type="text" name="birth_year"><br><br>
+        <div style="color:red" th:if="${#fields.hasErrors()}" th:errors="*{birthday}">Birth year error! </div>
         <input type="submit" value="save">
     </form>
     <form th:action="@{/person/all}" th:method="get">

@@ -8,7 +8,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Optional;
 
 @Repository
 public class PersonRepository implements AbstractRepository<Person> {
@@ -58,5 +58,10 @@ public class PersonRepository implements AbstractRepository<Person> {
     public List<Book> getFreeBookLists(Integer personId) {
         return jdbcTemplate.query("SELECT * FROM book b WHERE b.person_id IS NULL",
                 new BeanPropertyRowMapper<>(Book.class));
+    }
+
+    public Optional<Person> getPersonByName(String name) {
+        return jdbcTemplate.query("SELECT * FROM person WHERE name=?", new Object[]{name},
+                new BeanPropertyRowMapper<>(Person.class)).stream().findAny();
     }
 }

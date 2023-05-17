@@ -3,7 +3,6 @@ package com.nanemo.entity;
 import lombok.*;
 
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.util.List;
 
@@ -17,7 +16,16 @@ public class Person {
     @NotEmpty(message = "Release date can't be empty!")
     @Size(min = 2, max = 50)
     private String name;
-    @Pattern(regexp = "\\d{4}", message = "Please enter correct birth year")
     private String birthday;
     private List<Book> bookList;
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "personId=" + personId +
+                ", name='" + name + '\'' +
+                ", birthday='" + birthday + '\'' +
+                ", bookList=" + bookList +
+                '}';
+    }
 }
