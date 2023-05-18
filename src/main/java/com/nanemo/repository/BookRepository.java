@@ -20,7 +20,7 @@ public class BookRepository implements AbstractRepository<Book> {
 
     @Override
     public List<Book> getAll() {
-        return jdbcTemplate.query("SELECT b.book_id, b.book_name, b.author_name, b.release_date, p.name FROM Book b " +
+        return jdbcTemplate.query("SELECT b.book_id, b.book_name, b.author_name, b.birthday, p.name FROM Book b " +
                 "LEFT JOIN Person p on p.person_id = b.person_id ORDER BY b.book_id", new BeanPropertyRowMapper<>(Book.class));
     }
 
@@ -32,15 +32,15 @@ public class BookRepository implements AbstractRepository<Book> {
 
     @Override
     public void create(Book book) {
-        jdbcTemplate.update("INSERT INTO Book (book_name, author_name, release_date) VALUES (?,?,?)", book.getBookName(), book.getAuthorName(), book.getReleaseDate());
+        jdbcTemplate.update("INSERT INTO Book (book_name, author_name, birthday) VALUES (?,?,?)", book.getBookName(), book.getAuthorName(), book.getBirthday());
     }
 
     @Override
     public void update(Book book, Integer id) {
-        jdbcTemplate.update("UPDATE Book SET book_name=?, author_name=?, release_date=? WHERE book_id=?",
+        jdbcTemplate.update("UPDATE Book SET book_name=?, author_name=?, birthday=? WHERE book_id=?",
                 book.getBookName(),
                 book.getAuthorName(),
-                book.getReleaseDate(),
+                book.getBirthday(),
                 id);
     }
 

@@ -1,5 +1,6 @@
 package com.nanemo.util;
 
+import com.nanemo.entity.Book;
 import com.nanemo.entity.Person;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
@@ -16,14 +17,19 @@ public class DateValidator implements Validator {
 
     @Override
     public void validate(Object target, Errors errors) {
-        Person person = (Person) target;
+        String birthday = "";
+        if (target instanceof Person) {
+            Person person = (Person) target;
+            birthday = person.getBirthday().trim();
+        } else if (target instanceof Book){
+            System.out.println("Book instance");
+            Book book = (Book) target;
+            birthday = book.getBirthday().trim();
+        }
 
-        System.out.println("|" + person.getBirthday() + "|");
-        String birthday = person.getBirthday().trim();
-        System.out.println(birthday.length());
-        System.out.println("|" + person.getBirthday().trim() + "|");
 
         if (birthday.isBlank() || birthday.isEmpty()) {
+            System.out.println("Empty book");
             errors.rejectValue("birthday", "", "Year of date can not be empty");
         } else if (Integer.parseInt(birthday) >= LocalDate.now().getYear()) {
             errors.rejectValue("birthday", "", "Added year cannot be higher than the current year");

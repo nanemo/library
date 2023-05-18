@@ -37,7 +37,7 @@
                 <td th:text="${book.getBookId()}"></td>
                 <td th:text="${book.getBookName()}"></td>
                 <td th:text="${book.getAuthorName()}"></td>
-                <td th:text="${book.getReleaseDate()}"></td>
+                <td th:text="${book.getBirthday()}"></td>
                 <td th:text="${book.getName()}"></td>
                 <td style="size: auto">
                     <form th:action="@{/book/delete/{book_id}/(book_id=${book.getBookId()})}" th:method="DELETE">

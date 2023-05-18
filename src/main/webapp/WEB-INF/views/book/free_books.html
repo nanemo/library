@@ -23,7 +23,7 @@
         <tr th:each="book : ${free_books}">
             <td th:text="${book.bookName}"></td>
             <td th:text="${book.authorName}"></td>
-            <td th:text="${book.releaseDate}"></td>
+            <td th:text="${book.getBirthday}"></td>
 
             <td>
                 <form th:action="@{/book/add_book_to_person/{person_id}/{book_id}/(person_id=${current_person_id},

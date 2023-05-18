@@ -20,6 +20,6 @@ public class Book {
     @Size(min = 2, max = 50)
     private String authorName;
     @Pattern(regexp = "\\d{4}", message = "Please enter correct year")
-    private String releaseDate;
+    private String birthday;
     private String name;
 }
