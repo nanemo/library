@@ -26,8 +26,8 @@
             <input id="author_name" th:field="*{authorName}" type="text" name="author_name"><br>
             <div style="color:red" th:if="${#fields.hasErrors('authorName')}" th:errors="*{authorName}">Author name error! </div>
             <label for="release_date">Enter release date:</label><br>
-            <input id="release_date" th:field="*{getBirthday}" type="text" name="release_date"><br><br>
-            <div style="color:red" th:if="${#fields.hasErrors('getBirthday')}" th:errors="*{getBirthday}">Release date error! </div>
+            <input id="release_date" th:field="*{birthday}" type="text" name="release_date"><br><br>
+            <div style="color:red" th:if="${#fields.hasErrors('birthday')}" th:errors="*{birthday}">Release date error! </div>
             <input type="button" value="save">
         </form>
         <form th:action="@{/book/all}" th:method="get">
