@@ -3,13 +3,15 @@ package com.nanemo.controller;
 import com.nanemo.entity.Book;
 import com.nanemo.service.BookService;
 import com.nanemo.service.PersonService;
+import com.nanemo.util.DateValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/book")
@@ -17,11 +19,15 @@ public class BookController {
 
     private final BookService bookService;
     private final PersonService personService;
+    private final DateValidator dateValidator;
 
     @Autowired
-    public BookController(BookService bookService, PersonService personService) {
+    public BookController(BookService bookService,
+                          PersonService personService,
+                          DateValidator dateValidator) {
         this.bookService = bookService;
         this.personService = personService;
+        this.dateValidator = dateValidator;
     }
 
     @GetMapping("/all")
@@ -44,7 +50,14 @@ public class BookController {
     }
 
     @PostMapping("/create")
-    public String createBook(@ModelAttribute("book") Book book) {
+    public String createBook(@ModelAttribute("book") @Valid Book book,
+                             BindingResult bindingResult) {
+        dateValidator.validate(book, bindingResult);
+
+        if (bindingResult.hasErrors()) {
+            return "book/new";
+        }
+
         bookService.createBook(book);
         return "redirect:/book/all";
     }
@@ -59,13 +72,22 @@ public class BookController {
     }
 
     @GetMapping("/before_update/{book_id}")
-    public String beforeUpdateBook(Model model, @PathVariable("book_id") Integer bookId) {
+    public String beforeUpdateBook(Model model,
+                                   @PathVariable("book_id") Integer bookId) {
         model.addAttribute("book", bookService.getBookById(bookId));
         return "book/update";
     }
 
     @PostMapping("/update/{book_id}")
-    public String updateBook(@ModelAttribute("book") Book book, @PathVariable("book_id") Integer bookId) {
+    public String updateBook(@ModelAttribute("book") @Valid Book book,
+                             BindingResult bindingResult,
+                             @PathVariable("book_id") Integer bookId) {
+        dateValidator.validate(book, bindingResult);
+
+        if (bindingResult.hasErrors()) {
+            return "book/update";
+        }
+
         bookService.updateBook(book, bookId);
         return "redirect:/book/all";
     }

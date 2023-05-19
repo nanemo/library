@@ -2,12 +2,9 @@ package com.nanemo.util;
 
 import com.nanemo.entity.Person;
 import com.nanemo.service.PersonService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
-
-import java.time.LocalDate;
 
 @Component
 public class PersonNameValidator implements Validator {

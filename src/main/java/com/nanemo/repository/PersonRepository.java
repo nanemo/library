@@ -22,23 +22,23 @@ public class PersonRepository implements AbstractRepository<Person> {
 
     @Override
     public List<Person> getAll() {
-        return jdbcTemplate.query("SELECT * FROM person ORDER BY person.person_id", new BeanPropertyRowMapper<>(Person.class));
+        return jdbcTemplate.query("SELECT * FROM person p ORDER BY p.person_id", new BeanPropertyRowMapper<>(Person.class));
     }
 
     @Override
     public Person getById(Integer id) {
-        return jdbcTemplate.query("SELECT p.* FROM person p WHERE p.person_id=?", new Object[]{id},
+        return jdbcTemplate.query("SELECT p.* FROM Person p WHERE p.person_id=?", new Object[]{id},
                 new BeanPropertyRowMapper<>(Person.class)).stream().findAny().orElse(null);
     }
 
     @Override
     public void create(Person person) {
-        jdbcTemplate.update("INSERT INTO person (name, birthday) VALUES (?, ?)", person.getName(), person.getBirthday());
+        jdbcTemplate.update("INSERT INTO Person (name, birthday) VALUES (?, ?)", person.getName(), person.getBirthday());
     }
 
     @Override
     public void update(Person person, Integer person_id) {
-        jdbcTemplate.update("UPDATE person SET name=?, birthday=? WHERE person_id=?",
+        jdbcTemplate.update("UPDATE Person SET name=?, birthday=? WHERE person_id=?",
                 person.getName(),
                 person.getBirthday(),
                 person_id);
@@ -46,22 +46,22 @@ public class PersonRepository implements AbstractRepository<Person> {
 
     @Override
     public void delete(Integer id) {
-        jdbcTemplate.update("DELETE FROM person p WHERE p.person_id=?", id);
+        jdbcTemplate.update("DELETE FROM Person p WHERE p.person_id=?", id);
     }
 
     public List<Book> getPersonOrderedBookList(Integer personId) {
-        return jdbcTemplate.query("SELECT b.* FROM book b WHERE b.person_id=?",
+        return jdbcTemplate.query("SELECT b.* FROM Book b WHERE b.person_id=?",
                 new Object[]{personId}, new BeanPropertyRowMapper<>(Book.class));
     }
 
 
     public List<Book> getFreeBookLists(Integer personId) {
-        return jdbcTemplate.query("SELECT * FROM book b WHERE b.person_id IS NULL",
+        return jdbcTemplate.query("SELECT * FROM Book b WHERE b.person_id IS NULL",
                 new BeanPropertyRowMapper<>(Book.class));
     }
 
     public Optional<Person> getPersonByName(String name) {
-        return jdbcTemplate.query("SELECT * FROM person WHERE name=?", new Object[]{name},
+        return jdbcTemplate.query("SELECT * FROM Person WHERE name=?", new Object[]{name},
                 new BeanPropertyRowMapper<>(Person.class)).stream().findAny();
     }
 }
