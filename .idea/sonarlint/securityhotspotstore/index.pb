@@ -1,39 +1,15 @@
 
-\
-,src/main/java/com/nanemo/config/WebInit.java,5\2\52e13a984dcee00b67eade41f64ec3b228178062
-^
-.src/main/java/com/nanemo/config/AppConfig.java,7\1\71dc1c319e09ab1e85cd5ed610e7412745643529
-a
-1src/main/java/com/nanemo/service/BookService.java,4\f\4f4437761b32e2a1df9126eeebdfb74385a1014a
-7
-pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
 e
 5src/main/webapp/WEB-INF/views/person/person_list.html,6\5\652ab121f36b13326f60f6135ab895fb4f08dd4d
 g
 7src/main/webapp/WEB-INF/views/person/update_person.html,5\c\5c85babcefeb337dabc7185c14cbaa27421b567f
-k
-;src/main/java/com/nanemo/repository/AbstractRepository.java,5\c\5c1eedcd8ddc41ad46fd4aba1d7adb63dc1ab0ab
 a
 1src/main/webapp/WEB-INF/views/book/book_list.html,9\9\99a81ceff387a3378f15bef34b1ff3b02b867f01
 o
 ?src/main/webapp/WEB-INF/views/person/persons_ordered_books.html,8\7\87437da133dcad159bd49a60de21e0233debb7f8
-f
-6src/main/java/com/nanemo/util/PersonNameValidator.java,5\3\530874de1e3927577f864978b94718bf113f78bf
-g
-7src/main/java/com/nanemo/controller/BookController.java,d\7\d70ed95d6c1f2d76db05a872bcc8598168206fd0
-`
-0src/main/java/com/nanemo/util/DateValidator.java,a\e\ae949d2158e591c3b8b5437eecda2d29507373b7
 :
 
 .gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
-c
-3src/main/java/com/nanemo/service/PersonService.java,3\1\310a9cf4a72e8372bf3eaed118f0010df48a8f03
-b
-2src/main/webapp/WEB-INF/views/book/free_books.html,b\a\ba5ec4618e9cf8e425f0eb5bac0ed018e2ce0f5f
-i
-9src/main/java/com/nanemo/controller/PersonController.java,5\d\5d4d58d7b3a33ddb3016a9c6e12f682e3abd75e3
 :
 
 Dockerfile,6\6\6651ddff6eb82c840ced7c1dddee15c6e1913dd4
-Y
-)src/main/java/com/nanemo/entity/Book.java,2\7\27ca21ab07b623d7eddf83fbef3dbd7045f9351d

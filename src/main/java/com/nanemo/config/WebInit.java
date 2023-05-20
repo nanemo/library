@@ -35,7 +35,8 @@ public class WebInit extends AbstractAnnotationConfigDispatcherServletInitialize
 
     private void hiddenHttpMethodFilter(ServletContext servletContext) {
         servletContext.addFilter("hiddenHttpMethodFilter",
-                new HiddenHttpMethodFilter()).addMappingForUrlPatterns(null, true, "/*");
+                new HiddenHttpMethodFilter())
+                .addMappingForUrlPatterns(null, true, "/*");
     }
 
     private void registerCharacterEncodingFilter(ServletContext aContext) {
@@ -45,7 +46,8 @@ public class WebInit extends AbstractAnnotationConfigDispatcherServletInitialize
         characterEncodingFilter.setEncoding("UTF-8");
         characterEncodingFilter.setForceEncoding(true);
 
-        FilterRegistration.Dynamic characterEncoding = aContext.addFilter("characterEncoding", characterEncodingFilter);
+        FilterRegistration.Dynamic characterEncoding = aContext.addFilter("characterEncoding",
+                characterEncodingFilter);
         characterEncoding.addMappingForUrlPatterns(dispatcherTypes, true, "/*");
     }
 

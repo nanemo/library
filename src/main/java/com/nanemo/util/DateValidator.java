@@ -22,14 +22,12 @@ public class DateValidator implements Validator {
             Person person = (Person) target;
             birthday = person.getBirthday().trim();
         } else if (target instanceof Book){
-            System.out.println("Book instance");
             Book book = (Book) target;
             birthday = book.getBirthday().trim();
         }
 
 
         if (birthday.isBlank() || birthday.isEmpty()) {
-            System.out.println("Empty book");
             errors.rejectValue("birthday", "", "Year of date can not be empty");
         } else if (Integer.parseInt(birthday) >= LocalDate.now().getYear()) {
             errors.rejectValue("birthday", "", "Added year cannot be higher than the current year");

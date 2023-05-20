@@ -1,13 +1,12 @@
 package com.nanemo.controller;
 
 import com.nanemo.entity.Person;
-import com.nanemo.service.PersonService;
+    import com.nanemo.service.PersonService;
 import com.nanemo.util.DateValidator;
 import com.nanemo.util.PersonNameValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,13 +30,6 @@ public class PersonController {
     public String getPeople(Model model) {
         model.addAttribute("people", personService.getPeople());
         return "person/person_list";
-    }
-
-    @GetMapping("/{person_id}")
-    public String getPersonById(Model model,
-                                @PathVariable("person_id") Integer personId) {
-        model.addAttribute("person", personService.getPersonById(personId));
-        return "person/show";
     }
 
     @GetMapping("/ordered_book/{person_id}")
@@ -83,7 +75,7 @@ public class PersonController {
     }
 
     @PostMapping("/update/{person_id}")
-    public String updatePerson(ModelMap modelMap, @ModelAttribute("person") @Valid Person person,
+    public String updatePerson(@ModelAttribute("person") @Valid Person person,
                                BindingResult bindingResult,
                                @PathVariable("person_id") Integer personId) {
         person.setPersonId(personId);
