@@ -30,9 +30,10 @@ g
 7src/main/webapp/WEB-INF/views/person/update_person.html,5\c\5c85babcefeb337dabc7185c14cbaa27421b567f
 b
 2src/main/webapp/WEB-INF/views/book/free_books.html,b\a\ba5ec4618e9cf8e425f0eb5bac0ed018e2ce0f5f
-Y
-)src/main/java/com/nanemo/entity/Book.java,2\7\27ca21ab07b623d7eddf83fbef3dbd7045f9351d
-[
-+src/main/java/com/nanemo/entity/Person.java,1\c\1c4f4e08c56d9fa4ac95cff2d2d640fd837990af
 i
 9src/main/java/com/nanemo/controller/PersonController.java,5\d\5d4d58d7b3a33ddb3016a9c6e12f682e3abd75e3
+:
+
+Dockerfile,6\6\6651ddff6eb82c840ced7c1dddee15c6e1913dd4
+Y
+)src/main/java/com/nanemo/entity/Book.java,2\7\27ca21ab07b623d7eddf83fbef3dbd7045f9351d
